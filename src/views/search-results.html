@@ -1,0 +1,45 @@
+{% extends "lay-out.html" %}
+
+{% set PageId = "page-search-results" %}
+{% block title %}
+    <title>Busca de Ponto de Coleta</title>
+{% endblock title %}
+
+{% block styles %}
+    <link rel="stylesheet" href="styles/search-results.css">
+{% endblock styles %}
+
+{# id="page-home" #}
+{% block content %}
+    {% include "partials/page-header.html" %}
+
+    <main>
+        {% if total>0 %}        
+            <h3>
+                <strong>{{total}} pontos </strong>encontrados
+            </h3>
+            <div class="cards">        
+                {% for place in places %}
+                    <div class="card">
+                        <img src="{{place.image}}" alt="{{place.name}}">
+                        <h1>{{place.name}}</h1>
+                        <h3>{{place.items}}</h3>
+                        <p>
+                            {{place.state}}, {{place.city}}
+                            <br/>
+                            {{place.address}}
+                            <br/>
+                            {{place.address2}}
+                        </p>
+                    </div>
+                {% endfor %}            
+            </div>
+        {%else%}
+            <h3>Não Encontrado Nenhum Ponto de Coleta </h3>
+        {% endif %}        
+    </main>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="/scripts/index.js"></script>
+{% endblock scripts %}
