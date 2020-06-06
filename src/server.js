@@ -65,7 +65,7 @@ server.use(express.urlencoded ( { extended:true } ) )
         }
 
         //pegar os dados no banco de dados para exibir no html
-        db.all(`SELECT * FROM places`, function(err,rows){
+        db.all(`SELECT * FROM places WHERE city LIKE '%${search}%'`, function(err,rows){
 
             if (err){
                 return console.log(err)
